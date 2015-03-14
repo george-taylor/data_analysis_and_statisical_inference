@@ -1,5 +1,6 @@
 # Lab 0 # coursera data_analysis_and_statisical_inference spring 2015
 
+# fetch some data: the number of boys and girls born in the US each year. 
 source("http://www.openintro.org/stat/data/present.R")
 
 # q1: How many variables are included in this data set?
