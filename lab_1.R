@@ -31,16 +31,27 @@ head(cdc$smoke100)
 # q5: Create a numerical summary for gender. How many males are in the sample?  
 length(cdc$gender[cdc$gender == "m"])
 table(cdc$gender[cdc$gender == "m"])
+summary(cdc$gender)
 
 # q6: Compute the relative frequency distribution of genhlth. 
 # What proportion of the sample reports being in excellent health?
 table(cdc$genhlth)/20000
 
-# q7: Make a plot that displays the boy-to-girl ratio for every year in the data set. What do you see?
-plot(x = cdc$year, y = (cdc$boys / cdc$girls),  type = "o")
+# q7: What does the mosaic plot reveal about smoking habits and gender?
+gender_smokers = table(cdc$gender,cdc$smoke100)
+mosaicplot(gender_smokers)
 
-# q8: Calculate absolute differences between number of boys and girls born in each year, 
-# and determine which year out of the cdc data had the biggest absolute difference 
-# in the number of girls and number of boys born? 
-cdc$year[which.max(cdc$boys - cdc$girls)]
+# q8: How many observations are in the subset under23 and smoke that you created in the 
+# previous exercise, i.e. how many people in the sample are under the age of 23 and have 
+# smoked at least 100 cigarettes in their lifetime?
+smokers_under_23 = subset(cdc, cdc$smoke100 == "1" & cdc$age < 23)
+dim(smokers_under_23)
+
+# q9: Which of the following is false based on the box plot of BMI vs. general health?   
+bmi = (cdc$weight / cdc$height^2) * 703
+boxplot(bmi ~ cdc$genhlth)
+
+# q10: Based on the plot you made in the previous exercise, which of the following is 
+# true about the relationship between weight and desired weight?   
+plot(x = cdc$weight, y = cdc$wtdesire )
 
